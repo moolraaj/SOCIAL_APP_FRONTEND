@@ -7,5 +7,4 @@ interface Props {
 const CreatePost = ({ onPostCreated }: Props) => {
   return <PostForm onPostCreated={onPostCreated} />;
 };
-
 export default CreatePost;
