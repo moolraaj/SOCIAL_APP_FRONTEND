@@ -63,9 +63,12 @@ const getImageUrl = () => post.imageUrl;
           onClick={() => setShowCommentForm(!showCommentForm)}
         >
           <MessageSquare size={20} />
-          {post.comments.length} {post.comments.length === 1 ? 'Comment' : 'Comments'}
+          ADD COMMENT
+         
           {showCommentForm ? ' ↑' : ' ↓'}
         </button>
+
+         
 
    
         {showCommentForm && (
@@ -82,14 +85,21 @@ const getImageUrl = () => post.imageUrl;
         {post.comments.length > 0 && (
           <div className="comments-list">
             <h4 className="comments-title">Comments ({post.comments.length})</h4>
-            {post.comments.map((comment) => (
-              <CommentItem
-                key={comment._id}
-                comment={comment}
-                postId={post._id}
-                onCommentUpdated={handleCommentUpdated}
-              />
-            ))}
+            {[...post.comments]
+  .sort(
+    (a, b) =>
+      new Date(b.createdAt).getTime() -
+      new Date(a.createdAt).getTime()
+  )
+  .map((comment) => (
+    <CommentItem
+      key={comment._id}
+      comment={comment}
+      postId={post._id}
+      onCommentUpdated={handleCommentUpdated}
+    />
+))}
+
           </div>
         )}
       </div>

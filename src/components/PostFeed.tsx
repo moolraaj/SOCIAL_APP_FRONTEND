@@ -26,7 +26,7 @@ const PostFeed: React.FC = () => {
     fetchPosts();
   }, []);
 
-  // ✅ NEW: update only the commented post
+  
   const handleCommentAdded = (updatedPost: Post) => {
     setPosts(prev =>
       prev.map(post =>
