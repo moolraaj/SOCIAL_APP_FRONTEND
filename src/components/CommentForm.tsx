@@ -3,25 +3,33 @@ import { Send } from 'lucide-react';
 import { postApi } from '../services/api';
 import type { CommentFormProps } from '../types/type';
 
+interface LocalCommentFormProps extends CommentFormProps {
+  onCommentAdded: (updatedPost: any) => void;
+}
 
-
-const CommentForm: React.FC<CommentFormProps> = ({ postId, onCommentAdded }) => {
+const CommentForm: React.FC<LocalCommentFormProps> = ({
+  postId,
+  onCommentAdded
+}) => {
   const [text, setText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!text.trim()) {
       setError('Please enter a comment');
       return;
     }
+
     setIsLoading(true);
     setError('');
+
     try {
-      await postApi.addComment(postId, text);
+      const response = await postApi.addComment(postId, text);
       setText('');
-      onCommentAdded();
+      onCommentAdded(response.data.post); 
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to add comment');
     } finally {
@@ -40,16 +48,11 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId, onCommentAdded }) => 
           rows={2}
           maxLength={300}
         />
-        <div className="char-counter">
-          {text.length}/300
-        </div>
-        {error && (
-          <div className="error-message">
-            {error}
-          </div>
-        )}
+        <div className="char-counter">{text.length}/300</div>
+
+        {error && <div className="error-message">{error}</div>}
       </div>
-      
+
       <button
         type="submit"
         disabled={isLoading || !text.trim()}
@@ -57,7 +60,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId, onCommentAdded }) => 
         style={{ width: 'auto' }}
       >
         {isLoading ? (
-          <div className="loading-spinner small" style={{ width: '20px', height: '20px' }}></div>
+          <div className="loading-spinner small" style={{ width: '20px', height: '20px' }} />
         ) : (
           <>
             <Send size={20} />

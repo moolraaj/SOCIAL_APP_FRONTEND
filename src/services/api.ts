@@ -3,11 +3,11 @@ import type {
   ApiResponse,
   CreatePostResponse,
   GetPostsResponse,
-  AddCommentResponse
+  AddCommentResponse,
+  Post
 } from '../types/type';
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -16,7 +16,6 @@ const api = axios.create({
   },
 });
 
- 
 api.interceptors.response.use(
   (response) => response.data,
   (error) => {
@@ -25,9 +24,7 @@ api.interceptors.response.use(
   }
 );
 
- 
 export const postApi = {
-
   // Create post api
   createPost: async (
     formData: FormData
@@ -47,7 +44,7 @@ export const postApi = {
   // Get single post api 
   getSinglePost: async (
     postId: string
-  ): Promise<ApiResponse<{ post: any }>> => {
+  ): Promise<ApiResponse<{ post: Post }>> => {
     return api.get(`/posts/${postId}`);
   },
 
@@ -58,5 +55,31 @@ export const postApi = {
   ): Promise<ApiResponse<AddCommentResponse>> => {
     return api.post(`/posts/${postId}/comments`, { text });
   },
+
+  // Update comment
+  updateComment: async (
+    postId: string,
+    commentId: string,
+    text: string
+  ): Promise<ApiResponse<{ post: Post }>> => {
+    return api.patch(`/posts/${postId}/comments/${commentId}`, { text });
+  },
+
+  // Delete comment
+  deleteComment: async (
+    postId: string,
+    commentId: string
+  ): Promise<ApiResponse<{ post: Post }>> => {
+    return api.delete(`/posts/${postId}/comments/${commentId}`);
+  },
+
+  // Update post caption
+  updatePost: async (
+    postId: string,
+    caption: string
+  ): Promise<ApiResponse<{ post: Post }>> => {
+    return api.patch(`/posts/${postId}`, { caption });
+  },
 };
+
 export default api;

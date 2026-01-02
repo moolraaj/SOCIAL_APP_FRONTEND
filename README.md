@@ -37,7 +37,7 @@ Users can upload images, add captions, and comment on posts.
 
 src/
 │── common/ # Header, Footer, Layout
-│── components/ # PostFeed, PostItem, PostForm, CommentForm
+│── components/ # PostFeed, PostItem, PostForm, CommentForm,CommentItem
 │── pages/ # Home, CreatePost, NotFound
 │── services/ # API calls (Axios)
 │── types/ # TypeScript types

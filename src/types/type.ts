@@ -4,7 +4,14 @@ export type Comment = {
   _id: string;
   text: string;
   createdAt: string;
+  isEditing?: boolean;
 };
+
+export interface CommentItemProps {
+  comment: Comment;
+  postId: string;
+  onCommentUpdated: (updatedPost: Post) => void;  
+}
 
 export type Post = {
   _id: string;
@@ -46,7 +53,7 @@ export type AddCommentFormData = {
 
 export interface CommentFormProps {
   postId: string;
-  onCommentAdded: () => void;
+  onCommentAdded: (updatedPost?: any) => void;
 }
 
 export interface PostFormProps {
