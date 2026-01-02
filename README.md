@@ -1,73 +1,76 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+# 📘 FRONTEND README  
+👉 **Repo:** https://github.com/moolraaj/SOCIAL_APP_FRONTEND
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```md
+# Mini Social Media App – Frontend
 
-## React Compiler
+This is the frontend web application for the **Mini Social Media Post System** assignment.  
+Users can upload images, add captions, and comment on posts.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🔗 Live URLs
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend App:** https://social-app-frontend-zeta.vercel.app
+- **Backend API:** https://social-app-backend-9dgn.onrender.com
+- **GitHub Repo:** https://github.com/moolraaj/SOCIAL_APP_FRONTEND
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- React
+- TypeScript
+- Vite
+- React Router
+- Axios
+- Custom CSS
+- Lucide Icons
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📂 Folder Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+src/
+│── common/ # Header, Footer, Layout
+│── components/ # PostFeed, PostItem, PostForm, CommentForm
+│── pages/ # Home, CreatePost, NotFound
+│── services/ # API calls (Axios)
+│── types/ # TypeScript types
+│── utils/ # Helpers
+│── App.tsx
+│── main.tsx
+
+
+---
+
+## 🚀 How to Run Locally
+
+### 1️⃣ Clone the repository
+
+```bash
+
+git clone https://github.com/moolraaj/SOCIAL_APP_FRONTEND.git
+cd SOCIAL_APP_FRONTEND
+
+
+Install dependencies
+npm install
+
+Create .env file
+
+add this variable in the .env file
+
+VITE_API_URL=http://localhost:5000/api
+
+use this command  
+npm run dev
+
+App will run on:
+http://localhost:5173
+
+

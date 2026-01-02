@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
 import { postApi } from '../services/api';
+import type { CommentFormProps } from '../types/type';
 
-interface CommentFormProps {
-  postId: string;
-  onCommentAdded: () => void;
-}
+
 
 const CommentForm: React.FC<CommentFormProps> = ({ postId, onCommentAdded }) => {
   const [text, setText] = useState('');
@@ -14,15 +12,12 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId, onCommentAdded }) => 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!text.trim()) {
       setError('Please enter a comment');
       return;
     }
-
     setIsLoading(true);
     setError('');
-
     try {
       await postApi.addComment(postId, text);
       setText('');

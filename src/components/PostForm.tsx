@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import type { ChangeEvent } from 'react';
 
 import { postApi } from '../services/api';
+import type { PostFormProps } from '../types/type';
 
-interface PostFormProps {
-  onPostCreated: () => void;
-}
 
 const PostForm: React.FC<PostFormProps> = ({ onPostCreated }) => {
   const navigate = useNavigate();

@@ -1,4 +1,5 @@
-// Types for our social media app
+import type { ReactNode } from 'react';
+
 export type Comment = {
   _id: string;
   text: string;
@@ -13,7 +14,7 @@ export type Post = {
   comments: Comment[];
 };
 
-// API Response Types
+ 
 export type ApiResponse<T = any> = {
   status: string;
   data: T;
@@ -33,7 +34,7 @@ export type AddCommentResponse = {
   post: Post;
 };
 
-// Form Data Types
+ 
 export type CreatePostFormData = {
   image: File;
   caption: string;
@@ -42,3 +43,16 @@ export type CreatePostFormData = {
 export type AddCommentFormData = {
   text: string;
 };
+
+export interface CommentFormProps {
+  postId: string;
+  onCommentAdded: () => void;
+}
+
+export interface PostFormProps {
+  onPostCreated: () => void;
+}
+
+export interface LayoutProps {
+  children: ReactNode;
+}

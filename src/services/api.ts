@@ -4,7 +4,7 @@ import type {
   CreatePostResponse,
   GetPostsResponse,
   AddCommentResponse
-} from '../types/post';
+} from '../types/type';
 
 const API_BASE_URL =
   import.meta.env.VITE_API_URL;
@@ -27,7 +27,8 @@ api.interceptors.response.use(
 
  
 export const postApi = {
-  // Create post
+
+  // Create post api
   createPost: async (
     formData: FormData
   ): Promise<ApiResponse<CreatePostResponse>> => {
@@ -38,19 +39,19 @@ export const postApi = {
     });
   },
 
-  // Get all posts
+  // Get all posts api
   getPosts: async (): Promise<ApiResponse<GetPostsResponse>> => {
     return api.get('/posts');
   },
 
-  // Get single post  
+  // Get single post api 
   getSinglePost: async (
     postId: string
   ): Promise<ApiResponse<{ post: any }>> => {
     return api.get(`/posts/${postId}`);
   },
 
-  // Add comment
+  // Add comment api
   addComment: async (
     postId: string,
     text: string
@@ -58,12 +59,4 @@ export const postApi = {
     return api.post(`/posts/${postId}/comments`, { text });
   },
 };
-
-// Health check
-export const checkApiHealth = async (): Promise<
-  ApiResponse<{ message: string; timestamp: string }>
-> => {
-  return api.get('/health');
-};
-
 export default api;

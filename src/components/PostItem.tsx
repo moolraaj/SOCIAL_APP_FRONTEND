@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { MessageSquare, Clock, User } from 'lucide-react';
-import type { Post } from '../types/post';
+import type { Post } from '../types/type';
 import CommentForm from './CommentForm';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDate } from '../utils/global';
+
 
 interface PostItemProps {
   post: Post;
@@ -11,15 +12,6 @@ interface PostItemProps {
 
 const PostItem: React.FC<PostItemProps> = ({ post, onCommentAdded }) => {
   const [showCommentForm, setShowCommentForm] = useState(false);
-
-  const formatDate = (dateString: string) => {
-    try {
-      return formatDistanceToNow(new Date(dateString), { addSuffix: true });
-    } catch {
-      return dateString;
-    }
-  };
-
   const API_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000';
   const getImageUrl = () => {
     if (post.imageUrl.startsWith('http')) return post.imageUrl;
@@ -28,7 +20,6 @@ const PostItem: React.FC<PostItemProps> = ({ post, onCommentAdded }) => {
 
   return (
     <div className="post-card">
-     
       <div className="post-header">
         <div className="post-user">
           <div className="user-avatar">
@@ -42,8 +33,6 @@ const PostItem: React.FC<PostItemProps> = ({ post, onCommentAdded }) => {
             </div>
           </div>
         </div>
-        
-        
         <p className="post-caption">{post.caption}</p>
       </div>
 
@@ -59,7 +48,6 @@ const PostItem: React.FC<PostItemProps> = ({ post, onCommentAdded }) => {
 
      
       <div className="comments-section">
-      
         <button
           className="comments-toggle"
           onClick={() => setShowCommentForm(!showCommentForm)}
@@ -69,7 +57,6 @@ const PostItem: React.FC<PostItemProps> = ({ post, onCommentAdded }) => {
           {showCommentForm ? ' ↑' : ' ↓'}
         </button>
 
-        
         {showCommentForm && (
           <CommentForm 
             postId={post._id} 

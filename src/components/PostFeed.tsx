@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { RefreshCw, AlertCircle } from 'lucide-react';
-import type { Post } from '../types/post';
+import type { Post } from '../types/type';
 import { postApi } from '../services/api';
 import PostItem from './PostItem';
 
@@ -12,7 +12,6 @@ const PostFeed: React.FC = () => {
 const fetchPosts = async () => {
   setIsLoading(true);
   setError('');
-
   try {
     const response = await postApi.getPosts();
     setPosts(response.data.posts);
@@ -29,6 +28,7 @@ const fetchPosts = async () => {
     fetchPosts();
   }, []);
 
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -37,6 +37,7 @@ const fetchPosts = async () => {
       </div>
     );
   }
+
 
   if (error) {
     return (
