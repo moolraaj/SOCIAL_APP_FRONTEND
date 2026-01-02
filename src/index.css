@@ -528,7 +528,7 @@ body {
   margin-top: 8px;
 }
 
-/* Empty State */
+ 
 .empty-state {
   background-color: #f7fafc;
   border-radius: 12px;
@@ -561,7 +561,7 @@ body {
   margin: 0 auto;
 }
 
-/* Responsive Design */
+ 
 @media (max-width: 768px) {
   .header-content {
     flex-direction: column;
@@ -591,5 +591,13 @@ body {
     gap: 15px;
     text-align: center;
   }
+  .logo-section {
+    display: flex;
+    align-items: unset;
+    gap: 15px;
+}
+p.app-subtitle {
+    display: none;
+}
 }
 
