@@ -14,9 +14,12 @@ Users can upload images, add captions, and comment on posts.
 
 ## 🔗 Live URLs
 
-- **Frontend App:** https://social-app-frontend-zeta.vercel.app
+- **Frontend App:** https://social-app-frontend-jade.vercel.app
 - **Backend API:** https://social-app-backend-9dgn.onrender.com
 - **GitHub Repo:** https://github.com/moolraaj/SOCIAL_APP_FRONTEND
+sorry this is the link of the vecel
+
+ 
 
 ---
 
