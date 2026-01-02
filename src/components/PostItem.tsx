@@ -13,16 +13,16 @@ interface PostItemProps {
 const PostItem: React.FC<PostItemProps> = ({ post, onCommentAdded }) => {
   const [showCommentForm, setShowCommentForm] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000';
+ 
 
-  const getImageUrl = () => {
-    if (post.imageUrl.startsWith('http')) return post.imageUrl;
-    return `${API_URL}${post.imageUrl}`;
-  };
+const getImageUrl = () => post.imageUrl;
+
 
   const handleCommentUpdated = (updatedPost: Post) => {
     onCommentAdded(updatedPost);
   };
+
+  
 
   return (
     <div className="post-card">
