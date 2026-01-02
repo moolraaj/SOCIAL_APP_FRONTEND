@@ -4,6 +4,8 @@ import type { Post } from '../types/type';
 import CommentForm from './CommentForm';
 import { formatDate } from '../utils/global';
 
+ 
+
 
 interface PostItemProps {
   post: Post;
@@ -37,14 +39,15 @@ const PostItem: React.FC<PostItemProps> = ({ post, onCommentAdded }) => {
       </div>
 
       
-      <img 
-        src={getImageUrl()} 
-        alt={post.caption}
-        className="post-image"
-        onError={(e) => {
-          (e.target as HTMLImageElement).src = 'https://via.placeholder.com/600x400?text=Image+Not+Found';
-        }}
-      />
+   <img
+  src={getImageUrl()}
+  alt={post.caption}
+  className="post-image"
+  onError={(e) => {
+    (e.target as HTMLImageElement).src = '/not-found.png';
+  }}
+/>
+
 
      
       <div className="comments-section">
